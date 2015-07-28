@@ -4,8 +4,15 @@ angular.module('workspaceApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
-    }];
+      'link': '/',
+      'loginRequired': false
+    },
+    {
+      'title': 'My Polls',
+      'link': '/polls',
+      'loginRequired': true
+    }
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
