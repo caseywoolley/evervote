@@ -9,7 +9,7 @@ angular.module('workspaceApp')
     },
     {
       'title': 'My Polls',
-      'link': '/polls',
+      'link': '/my-polls',
       'loginRequired': true
     }
     ];

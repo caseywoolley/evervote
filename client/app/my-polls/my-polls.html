@@ -1,0 +1,41 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div ng-controller="MyPollsCtrl">
+  
+<div class="new-poll-form">
+  <div class="container">
+    <p class="lead">New Poll</p>
+    <form novalidate class="poll-form">
+          <input type="text" class="form-control" ng-model="newPoll.name" ng-change="addOption()" placeholder="What's your favorite cereal?" required /><br>
+          <p class="lead" ng-show="newPoll.name">Options:</p>
+          <div ng-repeat="i in getNumber(optionCount + 1) track by $index" ng-show="newPoll.name">
+            <input type="text" class="form-control" ng-change="addOption()" ng-model="newPoll.options[$index]" placeholder="Option {{ $index + 1 }}" required />
+          </div>
+          <br>
+          <input type="submit" ng-show="optionCount > 1" class="btn btn-primary" ng-click="addPoll(newPoll)" value="Submit" />
+    </form>
+  </div>
+</div>
+
+<!-- <pre>poll = {{newPoll | json}}</pre> -->
+<!-- <pre>polls = {{polls | json}}</pre> -->
+<pre>poll = {{newPoll | json}}</pre>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">My Polls:</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in polls">
+        <li><a href="{{poll._id}}" tooltip="{{poll._id}}">{{poll.name}}</a></li>
+        <ul ng-repeat="option in poll.options">
+          <li>{{option}}</li>
+        </ul>
+        <li><pre>json = {{poll | json}}</pre></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>
