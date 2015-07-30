@@ -4,7 +4,7 @@ angular.module('workspaceApp')
   .controller('MyPollsCtrl', function ($scope, $http, Auth) {
     $scope.newPoll = {};
     $scope.optionCount = 0;
-    $scope.baseUrl = "https://evervote-caseywoolley.c9.io/";
+    //$scope.baseUrl = "https://evervote-caseywoolley.c9.io/";
     $scope.user = Auth.getCurrentUser();
     
     $scope.addOption = function() {

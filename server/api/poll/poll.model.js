@@ -6,6 +6,8 @@ var mongoose = require('mongoose'),
 var PollSchema = new Schema({
   name: String,
   options: Object,
+  votes: Object,
+  voters: Object,
   ownerId: String,
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now }

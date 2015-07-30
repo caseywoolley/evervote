@@ -13,9 +13,25 @@
 }
 
 .poll-options:hover {
-    background-color: blue;
+    background-color: #FA8279;
 }
 
 .selected {
-    background-color: red;
+    background-color: #D25B52;
+}
+
+.selected:hover {
+    background-color: #D25B52;
+}
+
+.selected:before {
+  content:'>';
+  display:inline-block;
+  vertical-align: top;
+  line-height: 1.3em;
+  width: 1em;
+  height: 1em;
+  margin-right: .2em;
+  text-align: center;
+  color: #FA8279;
 }
