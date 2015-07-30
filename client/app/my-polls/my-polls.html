@@ -17,20 +17,22 @@
   </div>
 </div>
 
-<!-- <pre>poll = {{newPoll | json}}</pre> -->
-<!-- <pre>polls = {{polls | json}}</pre> -->
 <pre>poll = {{newPoll | json}}</pre>
+<pre>user = {{user | json}}</pre>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">My Polls:</h1>
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in polls">
-        <li><a href="{{poll._id}}" tooltip="{{poll._id}}">{{poll.name}}</a></li>
-        <ul ng-repeat="option in poll.options">
-          <li>{{option}}</li>
-        </ul>
-        <li><pre>json = {{poll | json}}</pre></li>
+        <li>
+            <a href="poll/{{poll._id}}" tooltip="poll/{{poll._id}}">{{poll.name}}</a>
+            <ul ng-repeat="option in poll.options">
+              <li>{{option}}</li>
+            </ul>
+            <pre>json = {{poll | json}}</pre>
+            <input type="button" ng-click="deletePoll(poll)" value="Delete"/>
+        </li>
       </ul>
     </div>
   </div>

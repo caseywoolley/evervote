@@ -1,0 +1,21 @@
+.vote-form {
+    padding: 20px;
+    color: white;
+    background-color: #E0675E;
+}
+
+.poll-options {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.poll-options:hover {
+    background-color: blue;
+}
+
+.selected {
+    background-color: red;
+}

@@ -1,20 +1,16 @@
 'use strict';
 
 angular.module('workspaceApp')
-  .controller('MyPollsCtrl', function ($scope, $http) {
-    //$scope.polls = [];
+  .controller('MyPollsCtrl', function ($scope, $http, Auth) {
     $scope.newPoll = {};
     $scope.optionCount = 0;
     $scope.baseUrl = "https://evervote-caseywoolley.c9.io/";
-    
-    $scope.save = function(newPoll) {
-      $scope.polls.push(newPoll);
-      $scope.newPoll = {};
-      $scope.optionCount = 0;
-    } 
+    $scope.user = Auth.getCurrentUser();
     
     $scope.addOption = function() {
-      $scope.optionCount = Object.keys($scope.newPoll.options).length;
+      if ($scope.newPoll.options) {
+        $scope.optionCount = Object.keys($scope.newPoll.options).length;
+      }
     }
     
     $scope.getNumber = function(num) {
@@ -22,26 +18,27 @@ angular.module('workspaceApp')
     }
     
     //database functions
-    
-    $http.get('/api/polls').success(function(polls) {
-      $scope.polls = polls;
-    });
+    $scope.getPolls = function(userId) {
+      $http.get('/api/polls').success(function(polls) {
+        $scope.polls = polls;
+      });
+    }
 
     $scope.addPoll = function() {
       if($scope.newPoll.options && $scope.newPoll.options[1]) {
-        $scope.polls.push($scope.newPoll); //just for frontend
-        $http.post('/api/polls', { 
-          name: $scope.newPoll.name,
-          options: $scope.newPoll.options
+        $scope.newPoll.ownerId = $scope.user._id;
+        $http.post('/api/polls', $scope.newPoll).success(function(){
+         $scope.getPolls();
+         $scope.newPoll = {};
+         $scope.optionCount = 0;
         });
-        $scope.newPoll = {};
-        $scope.optionCount = 0;
+        
       }
     };
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    $scope.deletePoll = function(poll) {
+      $http.delete('/api/polls/' + poll._id).success( $scope.getPolls() );
     };
-      
     
+    $scope.getPolls();
   });

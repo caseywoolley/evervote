@@ -1,0 +1,22 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div ng-controller="PollCtrl">
+    
+    <div class="vote-form">
+      <div class="container">
+        <h1>{{ poll.name }}</h1>
+        <form novalidate>
+            <ul ng-repeat="option in poll.options track by $index">
+                <li class="poll-options">{{option}}</li>
+            </ul>
+              <br>
+              <input type="submit" ng-show="optionCount > 1" class="btn btn-primary" ng-click="addPoll(newPoll)" value="Submit" />
+        </form>
+      </div>
+    </div>
+
+    <pre>json = {{poll | json}}</pre>
+
+</div>
+
+<div ng-include="'components/footer/footer.html'"></div>
