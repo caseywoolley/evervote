@@ -1,11 +1,12 @@
 'use strict';
-
 angular.module('workspaceApp')
-  .controller('PollCtrl', function ($scope, $http, $routeParams, Auth) {
+  .controller('PollCtrl', function ($scope, $http, $window, $routeParams, Auth, pollChart) {
     
-    //$scope.poll = {};
+    $scope.poll = {};
     $scope.user = Auth.getCurrentUser();
-    
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    //$scope.pollChart;
+    $scope.makePollChart = pollChart.makePollChart;
     
     //database functions
     $scope.showPoll = function(userId) {
@@ -16,8 +17,11 @@ angular.module('workspaceApp')
           $scope.poll.voters = {};
         }
         $scope.userSelection = $scope.poll.voters[$scope.user._id];
+        //$scope.drawChart($scope.poll);
+        $scope.makePollChart($scope.poll);
       });
     }
+    
     
     $scope.castVote = function(option) {
       $('.poll-options').removeClass('selected');
@@ -29,7 +33,6 @@ angular.module('workspaceApp')
       
       //remove old vote
       if ($scope.poll.voters[$scope.user._id] != undefined) {
-        console.log('remove:' + $scope.poll.voters[$scope.user._id]);
         $scope.poll.votes[$scope.poll.voters[$scope.user._id]] -= 1;
       }
       
@@ -42,7 +45,9 @@ angular.module('workspaceApp')
       $http.put('/api/polls/' + $scope.poll._id, $scope.poll).success( function(updatedPoll){
         $scope.poll = updatedPoll;
       });
-
+      
+      //redraw chart
+      $scope.makePollChart($scope.poll);
     }
     
     /* --- add this pattern to my-polls page
@@ -54,8 +59,12 @@ $http.post('/api/things', newThing).success(function(thatThingWeJustAdded) {
     */
     
     $scope.deletePoll = function(poll) {
-      $http.delete('/api/polls/' + poll._id).success( $scope.getPolls() );
+      $http.delete('/api/polls/' + poll._id).success( $window.location.href = '/my-polls' );
+      
     };
     
     $scope.showPoll();
+    
+   
+    
   });

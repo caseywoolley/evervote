@@ -9,6 +9,7 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(polls);
   });
+  
 };
 
 // Get a single poll
@@ -17,6 +18,15 @@ exports.show = function(req, res) {
     if(err) { return handleError(res, err); }
     if(!poll) { return res.status(404).send('Not Found'); }
     return res.json(poll);
+  });
+};
+
+// Get a users polls
+exports.showByUser = function(req, res) {
+  Poll.find( { "ownerId": req.params.id }, function (err, polls) {
+    if(err) { return handleError(res, err); }
+    if(!polls) { return res.status(404).send('Not Found'); }
+    return res.status(200).json(polls);
   });
 };
 

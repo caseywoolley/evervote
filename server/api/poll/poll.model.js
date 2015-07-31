@@ -8,7 +8,9 @@ var PollSchema = new Schema({
   options: Object,
   votes: Object,
   voters: Object,
+  voteCount: Number,
   ownerId: String,
+  ownerName: String,
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now }
 });

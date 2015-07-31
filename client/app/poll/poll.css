@@ -10,10 +10,17 @@
     margin: 0px;
     cursor: pointer;
     font-size: 25px;
+    float: left;
 }
 
 .poll-options:hover {
     background-color: #FA8279;
+    
+}
+
+.poll-chart {
+    width: 100%;
+    height: 300px;
 }
 
 .selected {
@@ -24,7 +31,11 @@
     background-color: #D25B52;
 }
 
-.selected:before {
+.poll-options:hover:before {
+  color: #E0675E;
+}
+
+.poll-options:before {
   content:'>';
   display:inline-block;
   vertical-align: top;

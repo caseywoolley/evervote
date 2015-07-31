@@ -3,3 +3,8 @@
     color: white;
     background-color: #E0675E;
 }
+
+.poll-chart {
+    width: 300px;
+    height: 200px;
+}

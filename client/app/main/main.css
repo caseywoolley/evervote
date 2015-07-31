@@ -29,6 +29,26 @@
     border-top: 1px solid #E5E5E5;
 }
 
-.navbar-text {
-    margin-left: 15px;
+.nav-tabs {
+    border:0px;
+    font-size: 20px;
+    
+}
+
+
+.nav-tabs:hover {
+    border:0px;
+}
+
+
+.pull-info{
+    font-size: 12px;
+    color: #777777;
+    background-color: #e7e7e7;
+    padding: 12px;
+    border-radius: 3px;
+}
+
+.vote-count {
+    font-size: 20px;
 }
