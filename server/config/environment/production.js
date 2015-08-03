@@ -21,5 +21,5 @@ module.exports = {
             'mongodb://localhost/workspace'
   },
   
-  seedDB: true
+  seedDB: false
 };
