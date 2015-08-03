@@ -4,20 +4,23 @@
   
 <div class="new-poll-form">
   <div class="container">
-    <p class="lead">New Poll</p>
     <form novalidate class="poll-form">
-          <input type="text" class="form-control" ng-model="newPoll.name" ng-change="addOption()" placeholder="What's your favorite cereal?" required /><br>
-          <p class="lead" ng-show="newPoll.name">Options:</p>
-          <div ng-repeat="i in getNumber(optionCount + 1) track by $index" ng-show="newPoll.name">
-            <input type="text" class="form-control" ng-change="addOption()" ng-model="newPoll.options[$index]" placeholder="Option {{ $index + 1 }}" required />
+        <label>New Poll</label>
+          <div><input type="text" class="form-control" ng-model="newPoll.name" ng-change="addOption()" placeholder="What's your favorite cereal?" required /></div>
+          <label ng-show="newPoll.name" style="padding-top:7px">Options:</label>
+          <div class="option" ng-attr-id="{{'option-' + $index }}" ng-repeat="i in getNumber(optionCount + 1) track by $index" ng-show="newPoll.name">
+            <input type="text" name='option' class="form-control" ng-change="addOption()" ng-model="newPoll.options[$index]" placeholder="Option {{ $index + 1 }}" required />
+            <span class="x-container"><i ng-click="removeOption($index)" class="fa fa-times delete-option"></i></span>
           </div>
           <br>
           <input type="submit" ng-show="optionCount > 1" class="btn btn-primary" ng-click="addPoll(newPoll)" value="Submit" />
     </form>
   </div>
 </div>
+
 <!--
 <pre>poll = {{newPoll | json}}</pre>
+<pre>options = {{optionCount}}</pre>
 <pre>user = {{user | json}}</pre>
 -->
 

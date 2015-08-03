@@ -6,9 +6,17 @@
       <div class="container">
         <h1>{{ poll.name }}</h1>
         <form novalidate>
+            <div>
             <ul ng-show="isLoggedIn()" ng-repeat="option in poll.options track by $index">
                 <li ng:class="{true:'poll-options selected', false:'poll-options'}[$index==userSelection]" ng-click="castVote($index)">{{option}}</li>
             </ul>
+            </div>
+            <br /><br /><br />
+            <div class = "new-option-button" ng-show="!addOption && isLoggedIn()" ng-click="newOption()">Add a new option</div>
+            <input type="text" ng-show="addOption" name='new-option' class="form-control" ng-model="poll.options[optionCount]" placeholder="Add a new option" required />
+            <span class="x-container"><i ng-show="addOption" ng-click="cancelOption()" class="fa fa-times delete-option"></i></span>
+            <input type="submit" ng-show="addOption" class="btn btn-primary" ng-click="addNewOption()" value="Save" />
+            <i ng-click="removeOption($index)" class="fa fa-times delete-option"></i>
         </form>
       </div>
     </div>
@@ -18,12 +26,15 @@
   
        <script src='assets/js/Chart.min.js'></script>
         <div class="poll-chart"></div>
-        <a href="poll/{{poll._id}}" tooltip="poll/{{poll._id}}">{{poll.name}}</a>
-        <div class="pull-info"><span class="vote-count"> {{ voteCount(poll) || "0" }} Votes</span> - Create {{poll.created | date:"shortDate" }} by {{ (poll.ownerName) || "Unknown" }} </div>
-        <input type="button" ng-click="deletePoll(poll)" ng-show="poll.ownerId === user._id" value="Delete"/>
+        <br/>
+      
+        <div class="pull-info"><span class="vote-count"> {{ voteCount(poll) || "0" }} Votes </span>| created {{poll.created | date:"shortDate" }} by {{ (poll.ownerName) || "Unknown" }} </div>
+        <input type="text" class="form-control" readonly="readonly" style="width:100%" value="{{ fullUrl }}"></input>
+        <input type="button" class="btn btn-lg btn-danger" ng-click="deletePoll(poll)" ng-show="poll.ownerId === user._id || isAdmin()" value="Delete"/>
+        
     </div>
     
-    <!-- <pre>json = {{poll | json}}</pre> -->
+    <!--<pre>json = {{poll | json}}</pre>  -->
 </div>
 
 <div ng-include="'components/footer/footer.html'"></div>

@@ -39,8 +39,8 @@ User.find({}).remove(function() {
   }, {
     provider: 'local',
     role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
+    name: 'Casey Woolley',
+    email: 'caseywoolley@gmail.com',
     password: 'admin'
   }, function() {
       console.log('finished populating users');

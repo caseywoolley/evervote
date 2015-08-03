@@ -8,3 +8,26 @@
     width: 300px;
     height: 200px;
 }
+
+.delete-option {
+    cursor: pointer;
+    color: #C45047;
+    position: absolute;
+    top: -28px;
+    left: -30px;
+    font-size: 20px;
+}
+
+.delete-option:hover {
+    color: #FA8279;
+}
+
+.x-container {
+    position: absolute;
+    display: inline-block;
+    background: black;
+}
+
+.option {
+    padding: 0px;
+}

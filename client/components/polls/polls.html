@@ -5,7 +5,11 @@
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="poll in polls">
         <li>
             <a href="poll/{{poll._id}}" tooltip="poll/{{poll._id}}">{{poll.name}}
-            <div class="pull-info"><span class="vote-count"> {{ voteCount(poll) || "0" }} Votes</span> - Create {{poll.created | date:"shortDate" }} by {{ (poll.ownerName) || "Unknown" }} </div></a>
+              <div class="pull-info">
+                <span class="vote-count"> {{ voteCount(poll) || "0" }} Votes </span>
+                | created {{poll.created | date:"shortDate" }} by {{ (poll.ownerName) || "Unknown" }} 
+              </div>
+            </a>
             <!-- <pre>json = {{poll | json}}</pre> -->
         </li>
       </ul>
